@@ -20,13 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/posts', 'PostsController');
 
-//Route::group([
-//    'middleware' => ['auth.jwt']
-//], function () {
-//    Route::resource('/categories', 'CategoriesController');
-//});
+Route::group([
+    'middleware' => ['auth.jwt']
+], function () {
+    Route::resource('/categories', 'CategoriesController');
+});
 
-Route::resource('/categories', 'CategoriesController');
 
 Route::get('/posts/{category_id}/category', [
     'uses' => 'PostsController@getPostsByCategory',
